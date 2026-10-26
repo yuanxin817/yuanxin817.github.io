@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xin (Sofia) Yuan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Xin (Sofia) Yuan, PhD candidate in Finance at Vrije Universiteit Amsterdam and the Tinbergen Institute. On the 2026–2027 academic job market.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: single scrolling page, sticky top nav with anchors; About = profile column + bio column; Research and Teaching as stacked sections. */
+:root {
+  --bg: #ffffff;
+  --alt: #f6f8fa;
+  --ink: #26292e;
+  --muted: #646b75;
+  --line: #e3e6ea;
+  --accent: #1a5e4a;
+  --accent-soft: #e4f0eb;
+  --f-head: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Lato", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15191b; --alt: #1b2023; --ink: #e4e8ea; --muted: #9ba5ab; --line: #2c3337; --accent: #7fc9ae; --accent-soft: #1d2f29; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15191b; --alt: #1b2023; --ink: #e4e8ea; --muted: #9ba5ab; --line: #2c3337; --accent: #7fc9ae; --accent-soft: #1d2f29; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.7; }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.in { max-width: 1000px; margin: 0 auto; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Nav */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+header .in { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-block: 14px; }
+.site { font-family: var(--f-head); font-weight: 700; font-size: 18px; color: var(--ink); }
+nav { display: flex; gap: 22px; font-family: var(--f-head); font-weight: 600; font-size: 15px; }
+nav a { color: var(--ink); }
+nav a:hover { color: var(--accent); text-decoration: none; }
+
+section { scroll-margin-top: 70px; }
+section.alt { background: var(--alt); }
+section .in { padding-block: 72px; }
+@media (max-width: 600px) { section .in { padding-block: 48px; } }
+h2 { font-family: var(--f-head); font-weight: 700; font-size: 30px; margin: 0 0 28px; }
+h3 { font-family: var(--f-head); font-weight: 600; font-size: 19px; margin: 0; line-height: 1.4; text-wrap: balance; }
+p { margin: 0; }
+
+/* About */
+.about { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 56px; }
+@media (max-width: 780px) { .about { grid-template-columns: 1fr; gap: 36px; } }
+.profile { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.avatar {
+  width: 220px; height: auto; max-width: 100%; aspect-ratio: 1; border-radius: 50%; background: var(--accent-soft);
+  object-fit: cover; object-position: 50% 22%; display: block; margin-bottom: 16px;
+}
+.profile .name { font-family: var(--f-head); font-weight: 700; font-size: 27px; line-height: 1.25; }
+.profile .title { color: var(--muted); }
+.profile .aff { line-height: 1.45; }
+.social { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-top: 12px; font-size: 15px; font-weight: 700; }
+.mail { margin-top: 8px; font-size: 15px; user-select: all; }
+.jm { margin-top: 14px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+.jm strong { color: var(--ink); }
+.bio { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.bio h2 { margin-bottom: 4px; }
+.notice { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 12px 16px; font-size: 16px; }
+.cols { display: grid; grid-template-columns: 1fr 1.5fr; gap: 32px; margin-top: 10px; }
+@media (max-width: 560px) { .cols { grid-template-columns: 1fr; gap: 24px; } }
+.cols h4 { font-family: var(--f-head); font-weight: 600; font-size: 18px; margin: 0 0 10px; }
+.cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.interests li::before { content: "›"; color: var(--accent); font-weight: 700; margin-right: 8px; }
+.edu li { display: flex; flex-direction: column; line-height: 1.4; padding-left: 18px; position: relative; }
+.edu li::before { content: ""; position: absolute; left: 0; top: 7px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.edu small { color: var(--muted); font-size: 15px; }
+
+/* Research */
+.group { font-family: var(--f-head); font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 44px 0 14px; }
+.group.first { margin-top: 0; }
+.pubs { display: flex; flex-direction: column; gap: 16px; }
+.pub { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 22px 24px; display: flex; flex-direction: column; gap: 8px; }
+.pub.jmp { border-color: var(--accent); }
+.authors { color: var(--muted); font-size: 15px; }
+.badge { align-self: flex-start; font-family: var(--f-head); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 2px 8px; border-radius: 3px; }
+details summary { cursor: pointer; color: var(--accent); font-size: 15px; font-weight: 700; }
+details p { margin-top: 8px; font-size: 16px; }
+.talks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 16px; }
+.talks li { display: flex; gap: 14px; }
+.talks .yr { color: var(--muted); font-variant-numeric: tabular-nums; flex: none; width: 40px; }
+
+/* Teaching */
+.inst { font-family: var(--f-head); font-weight: 600; font-size: 17px; margin: 28px 0 4px; }
+.inst.first { margin-top: 0; }
+.teach { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.teach li { display: flex; justify-content: space-between; gap: 6px 16px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.teach .lvl { color: var(--muted); }
+.teach .yr { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+footer .in { padding-block: 22px; }
+</style>
+</head>
+<body>
+
+<header class="gut">
+  <div class="in">
+    <a class="site" href="#home">Xin (Sofia) Yuan</a>
+    <nav aria-label="Site"><a href="#home">Home</a><a href="#research">Research</a><a href="#teaching">Teaching</a></nav>
+  </div>
+</header>
+
+<section id="home" class="gut">
+  <div class="in about">
+    <div class="profile">
+      <img class="avatar" src="photo.jpg" alt="Portrait of Xin (Sofia) Yuan" width="220" height="220">
+      <div class="name">Xin (Sofia) Yuan</div>
+      <div class="title">PhD Candidate in Finance</div>
+      <div class="aff"><a href="https://vu.nl/en" target="_blank" rel="noopener">Vrije Universiteit Amsterdam</a><br><a href="https://tinbergen.nl" target="_blank" rel="noopener">Tinbergen Institute</a></div>
+      <div class="social">
+        <a href="Xin_Yuan_CV.pdf" target="_blank" rel="noopener">CV</a>
+        <a href="https://research.vu.nl/en/persons/xin-yuan" target="_blank" rel="noopener">VU Research Profile</a>
+      </div>
+      <div class="mail">x.yuan@vu.nl</div>
+      <div class="jm"><strong>Placement Director</strong><br>Prof. Eric Bartelsman<br>e.j.bartelsman@vu.nl</div>
+    </div>
+
+    <div class="bio">
+      <h2>Biography</h2>
+      <p class="notice"><strong>I am on the 2026–2027 academic job market.</strong></p>
+      <p>I am a PhD candidate in Finance at Vrije Universiteit Amsterdam and the Tinbergen Institute, supervised by Iman van Lelyveld and Tanja Artiga Gonzalez. I expect to complete my PhD in August 2027.</p>
+      <p>My research interests are in empirical corporate finance, particularly innovation and sustainable finance. I study how firms acquire and finance green technologies. My job market paper examines how delays in patent examination affect firms' decisions to purchase green patents. I also work on shareholder engagement, banking supervision, and banks' responses to monetary policy.</p>
+      <p>During my PhD, I have been a visiting student at Stockholm University, hosted by Gustav Martinsson, and undertaken an internship at the Dutch Central Bank. I hold an M.Sc. in Financial Econometrics from Johns Hopkins University.</p>
+      <div class="cols">
+        <div>
+          <h4>Interests</h4>
+          <ul class="interests">
+            <li>Empirical Corporate Finance</li>
+            <li>Innovation</li>
+            <li>Sustainable Finance</li>
+            <li>Corporate Governance</li>
+            <li>Banking</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Education</h4>
+          <ul class="edu">
+            <li>PhD in Finance, expected 2027<small>Vrije Universiteit Amsterdam &amp; Tinbergen Institute</small></li>
+            <li>Visiting PhD Student, 2026<small>Stockholm University</small></li>
+            <li>M.Sc. in Financial Econometrics, 2020<small>Johns Hopkins University</small></li>
+            <li>B.A. in Finance and Russian Literature, 2019<small>University of International Business and Economics</small></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research" class="gut alt">
+  <div class="in">
+    <h2>Research</h2>
+
+    <div class="group first">Job Market Paper</div>
+    <div class="pubs">
+      <article class="pub jmp">
+        <span class="badge">Job Market Paper</span>
+        <h3>Knowledge Without Control: Examination Delay and Green-Patent Acquisitions</h3>
+        <details open><summary>Abstract</summary>
+          <p>United States public firms bought 11.2% of the green patents they obtained between 1996 and 2021. I show that firms buy green patents when examination delay leaves them with knowledge but no right to exclude others while a product-market rival files in the same technology class. Instrumenting delay with examiner slowness, I find that a one-standard-deviation increase in delay raises the probability of a purchase in the following twelve months by 11.7 percentage points, against a base rate of 16.3%. Firms without such a rival show no significant response, and accelerated examination under the Green Technology Pilot Program reduced purchases. The patents bought have claims closer to the firm's pending claims than other patents traded in the same technology subclass and year, which indicates a demand for legal protection rather than for knowledge. The response is concentrated in green technology, whose inventions combine more technological fields. After green purchases, funds oriented toward green innovation are less likely to exit the buyer, and emissions from purchased energy are lower when the patents cover production processes.</p>
+        </details>
+      </article>
+    </div>
+
+    <div class="group">Publications</div>
+    <div class="pubs">
+      <article class="pub">
+        <h3>Green Gains: The Impact of REITs' Environmental Performance on Sustainability-Linked Loan Interest Rates</h3>
+        <div class="authors">with L. M. Capera Romero, T. Artiga Gonzalez and E. Karmaziene</div>
+      </article>
+    </div>
+
+    <div class="group">Working Papers</div>
+    <div class="pubs">
+      <article class="pub">
+        <h3>Private Engagement, Public Votes: Evidence from Shareholder Engagement Disclosures</h3>
+        <div class="authors">with Tanja Artiga Gonzalez</div>
+      </article>
+      <article class="pub">
+        <h3>Green Patents as Collateral</h3>
+        <div class="authors">Single-authored</div>
+      </article>
+      <article class="pub">
+        <h3>Central Bank Reserves and Bank Stock Returns around ECB Decisions</h3>
+        <div class="authors">with Iman van Lelyveld</div>
+      </article>
+      <article class="pub">
+        <h3>Grouping the State: Reporting Boundaries and Exposure Concentration</h3>
+        <div class="authors">with Iman van Lelyveld</div>
+      </article>
+    </div>
+
+    <div class="group">Presentations</div>
+    <ul class="talks">
+      <li><span class="yr">2026</span><span>Annual Meeting of the Swiss Society for Financial Market Research (SGF), Zurich</span></li>
+      <li><span class="yr">2025</span><span>International Risk Management Conference, Bari</span></li>
+      <li><span class="yr">2024</span><span>PhD Seminar, Vrije Universiteit Amsterdam</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="teaching" class="gut">
+  <div class="in">
+    <h2>Teaching</h2>
+    <div class="inst first">Vrije Universiteit Amsterdam</div>
+    <ul class="teach">
+      <li><span>Finance <span class="lvl">· Undergraduate</span></span><span class="yr">2022–2026</span></li>
+      <li><span>Bachelor Thesis Supervision <span class="lvl">· 55 theses</span></span><span class="yr">2022–2026</span></li>
+      <li><span>Stochastic Processes: the Fundamentals <span class="lvl">· Master</span></span><span class="yr">2025, 2026</span></li>
+      <li><span>Corporate Finance: Theory and Empirics <span class="lvl">· Master</span></span><span class="yr">2024</span></li>
+    </ul>
+    <div class="inst">Johns Hopkins University</div>
+    <ul class="teach">
+      <li><span>Financial Modeling and Valuation <span class="lvl">· Master</span></span><span class="yr">2022</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="gut"><div class="in">© 2026 Xin (Sofia) Yuan · Last updated October 2026</div></footer>
+</body>
+</html>
