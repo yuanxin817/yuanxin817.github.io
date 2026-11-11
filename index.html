@@ -306,6 +306,7 @@ footer .in { padding-block: 22px; }
   });
   window.addEventListener("hashchange", function () { show(location.hash.slice(1), true); });
   show(location.hash.slice(1), false);
+  window.addEventListener("load", function () { setTimeout(function () { window.scrollTo(0, 0); }, 0); });
 })();
 </script>
 </body>
