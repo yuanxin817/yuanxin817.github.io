@@ -110,14 +110,17 @@ details .abs { margin-top: 10px; font-size: 16px; padding-left: 14px; border-lef
 .inst { font-family: var(--f-display); font-weight: 600; font-size: 22px; margin: 6px 0 -6px; }
 
 /* Personal */
-.hobbies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.hobbies figure, .gallery figure { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.hobbies img { width: 100%; max-width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 8px; background: var(--accent-soft); display: block; }
+.hobbies { display: grid; grid-template-columns: 0.75fr 1.333fr 0.649fr; gap: 36px; align-items: start; margin-top: 8px; }
+@media (max-width: 600px) { .hobbies { grid-template-columns: 1fr; gap: 28px; max-width: 420px; } }
+.hobbies figure, .gallery figure { margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+#personal h2.eyebrow { margin-top: 56px; }
+#personal h2.eyebrow.first { margin-top: 0; }
+#about > * { max-width: 760px; }
+.hobbies img { width: 100%; max-width: 100%; height: auto; border-radius: 8px; background: var(--accent-soft); display: block; }
 .hobbies figcaption { font-size: 15px; font-weight: 600; text-align: center; }
 .hobbies figcaption span { display: block; font-weight: 400; color: var(--muted); font-size: 14px; }
-.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
-@media (max-width: 640px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 420px) { .hobbies { gap: 10px; } }
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px 32px; margin-top: 8px; }
+@media (max-width: 640px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
 .gallery a { display: block; border-radius: 6px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
 .gallery img { width: 100%; max-width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; transition: transform .3s ease; }
 .gallery a:hover img { transform: scale(1.03); }
@@ -254,15 +257,15 @@ footer .in { padding-block: 22px; }
         <p>Outside research I paint in the Chinese bird-and-flower tradition, play the pipa and dance ballet.</p>
         <div class="hobbies">
           <figure>
-            <img src="img/hobby-painting.jpg" alt="Xin painting bamboo with a brush" loading="lazy">
+            <img src="img/hobby-painting.jpg" alt="Xin painting bamboo with a brush" loading="lazy" width="825" height="1100">
             <figcaption>Chinese painting</figcaption>
           </figure>
           <figure>
-            <img src="img/hobby-pipa.jpg" alt="Xin playing the pipa" loading="lazy" style="object-position: 40% 50%">
+            <img src="img/hobby-pipa.jpg" alt="Xin playing the pipa" loading="lazy" width="1100" height="825">
             <figcaption>Pipa</figcaption>
           </figure>
           <figure>
-            <img src="img/hobby-ballet.jpg" alt="Xin in a ballet pose" loading="lazy" style="object-position: 50% 30%">
+            <img src="img/hobby-ballet.jpg" alt="Xin in a ballet pose" loading="lazy" width="714" height="1100">
             <figcaption>Ballet</figcaption>
           </figure>
         </div>
