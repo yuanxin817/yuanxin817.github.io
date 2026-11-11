@@ -91,6 +91,11 @@ p { margin: 0; }
 .pub { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 22px 24px; display: flex; flex-direction: column; gap: 8px; }
 .pub.jmp { border-color: var(--accent); }
 .authors { color: var(--muted); font-size: 15px; }
+.pub h3 a { color: var(--ink); }
+.pub h3 a:hover { color: var(--accent); }
+.cite { font-size: 15px; }
+.plinks { font-size: 14px; font-weight: 700; display: flex; flex-wrap: wrap; gap: 4px 8px; }
+.plinks .doi { font-weight: 400; color: var(--muted); }
 .badge { align-self: flex-start; font-family: var(--f-head); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 2px 8px; border-radius: 3px; }
 details summary { cursor: pointer; color: var(--accent); font-size: 15px; font-weight: 700; }
 details p { margin-top: 8px; font-size: 16px; }
@@ -150,6 +155,7 @@ footer .in { padding-block: 22px; }
             <li>Sustainable Finance</li>
             <li>Corporate Governance</li>
             <li>Banking</li>
+            <li>Machine Learning</li>
           </ul>
         </div>
         <div>
@@ -184,13 +190,19 @@ footer .in { padding-block: 22px; }
     <div class="group">Publications</div>
     <div class="pubs">
       <article class="pub">
-        <h3>Green Gains: The Impact of REITs' Environmental Performance on Sustainability-Linked Loan Interest Rates</h3>
+        <h3><a href="https://doi.org/10.1016/j.frl.2024.106415" target="_blank" rel="noopener">Green Gains: The Impact of REITs' Environmental Performance on Sustainability-Linked Loan Interest Rates</a></h3>
         <div class="authors">with L. M. Capera Romero, T. Artiga Gonzalez and E. Karmaziene</div>
+        <div class="cite"><em>Finance Research Letters</em>, Vol. 71, January 2025, Article 106415</div>
+        <div class="plinks"><a href="https://doi.org/10.1016/j.frl.2024.106415" target="_blank" rel="noopener">Journal version</a> · <span class="doi">DOI: 10.1016/j.frl.2024.106415</span></div>
       </article>
     </div>
 
     <div class="group">Working Papers</div>
     <div class="pubs">
+      <article class="pub">
+        <h3>Cross-Lender Signals and the Timing of Credit Loss Recognition</h3>
+        <div class="authors">with Iman van Lelyveld</div>
+      </article>
       <article class="pub">
         <h3>Central Bank Reserves and Bank Stock Returns around ECB Decisions</h3>
         <div class="authors">with Iman van Lelyveld</div>
