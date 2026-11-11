@@ -50,15 +50,16 @@ nav a { color: var(--ink); padding-block: 4px; border-bottom: 2px solid transpar
 nav a:hover { color: var(--accent); text-decoration: none; }
 nav a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
 
-.page { padding-block: 64px 80px; }
+.layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 64px; padding-block: 64px 80px; }
+@media (max-width: 780px) { .layout { grid-template-columns: 1fr; gap: 40px; padding-block: 40px 56px; } }
+.content { min-width: 0; }
 .page[hidden] { display: none; }
-@media (max-width: 600px) { .page { padding-block: 40px 56px; } }
+.profile { position: sticky; top: 100px; align-self: start; }
+@media (max-width: 780px) { .profile { position: static; } }
 h2 { font-family: var(--f-head); font-weight: 700; font-size: 30px; margin: 0 0 28px; }
 h3 { font-family: var(--f-head); font-weight: 600; font-size: 19px; margin: 0; line-height: 1.4; }
 
 /* Home */
-.about { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 56px; }
-@media (max-width: 780px) { .about { grid-template-columns: 1fr; gap: 36px; } }
 .profile { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .avatar { width: 220px; height: auto; max-width: 100%; aspect-ratio: 1; border-radius: 50%; background: var(--accent-soft); object-fit: cover; object-position: 50% 22%; display: block; margin-bottom: 16px; }
 .profile .name { font-family: var(--f-head); font-weight: 700; font-size: 27px; line-height: 1.25; }
@@ -67,6 +68,7 @@ h3 { font-family: var(--f-head); font-weight: 600; font-size: 19px; margin: 0; l
 .social { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-top: 12px; font-size: 15px; font-weight: 700; }
 .mail { margin-top: 8px; font-size: 15px; user-select: all; }
 .jm { margin-top: 14px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+.mail a, .jm a { overflow-wrap: anywhere; }
 .jm strong { color: var(--ink); }
 .bio { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
 .bio h2 { margin-bottom: 4px; }
@@ -109,12 +111,12 @@ details p { margin-top: 8px; font-size: 16px; }
 
 /* Personal */
 .intro { max-width: 760px; margin-bottom: 28px; }
-.hobbies { display: grid; grid-template-columns: 0.75fr 1.333fr 0.649fr; gap: 32px; align-items: start; }
+.hobbies { display: grid; grid-template-columns: 0.75fr 1.333fr 0.649fr; gap: 24px; align-items: start; }
 @media (max-width: 600px) { .hobbies { grid-template-columns: 1fr; gap: 28px; max-width: 420px; } }
 .hobbies figure, .gallery figure { margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .hobbies img { width: 100%; max-width: 100%; height: auto; border-radius: 8px; background: var(--accent-soft); display: block; }
 .hobbies figcaption { font-size: 15px; font-weight: 700; text-align: center; }
-.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 28px; }
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 20px; }
 @media (max-width: 640px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; } }
 .gallery a { display: block; border-radius: 6px; overflow: hidden; background: var(--alt); border: 1px solid var(--line); }
 .gallery img { width: 100%; max-width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; transition: transform .3s ease; }
@@ -140,23 +142,23 @@ footer .in { padding-block: 22px; }
 </header>
 
 <main class="gut">
+  <div class="in layout">
+    <aside class="profile">
+      <img class="avatar" src="photo.jpg" alt="Portrait of Xin (Sofia) Yuan" width="220" height="220">
+      <div class="name">Xin (Sofia) Yuan</div>
+      <div class="title">PhD Candidate in Finance</div>
+      <div class="aff"><a href="https://vu.nl/en" target="_blank" rel="noopener">Vrije Universiteit Amsterdam</a><br><a href="https://tinbergen.nl" target="_blank" rel="noopener">Tinbergen Institute</a></div>
+      <div class="social">
+        <a href="Xin_Yuan_CV.pdf" target="_blank" rel="noopener">CV</a>
+        <a href="https://research.vu.nl/en/persons/xin-yuan" target="_blank" rel="noopener">VU Research Profile</a>
+      </div>
+      <div class="mail"><a href="mailto:x.yuan@vu.nl">x.yuan@vu.nl</a></div>
+      <div class="jm"><strong>Placement Director</strong><br>Prof. Eric Bartelsman<br><a href="mailto:e.j.bartelsman@vu.nl">e.j.bartelsman@vu.nl</a></div>
+      <div class="jm"><strong>Job Market Secretary</strong><br>Christina Mansson, Tinbergen Institute<br><a href="mailto:c.mansson@tinbergen.nl">c.mansson@tinbergen.nl</a></div>
+    </aside>
+  <div class="content">
   <!-- HOME -->
   <section id="home" class="page">
-    <div class="in about">
-      <div class="profile">
-        <img class="avatar" src="photo.jpg" alt="Portrait of Xin (Sofia) Yuan" width="220" height="220">
-        <div class="name">Xin (Sofia) Yuan</div>
-        <div class="title">PhD Candidate in Finance</div>
-        <div class="aff"><a href="https://vu.nl/en" target="_blank" rel="noopener">Vrije Universiteit Amsterdam</a><br><a href="https://tinbergen.nl" target="_blank" rel="noopener">Tinbergen Institute</a></div>
-        <div class="social">
-          <a href="Xin_Yuan_CV.pdf" target="_blank" rel="noopener">CV</a>
-          <a href="https://research.vu.nl/en/persons/xin-yuan" target="_blank" rel="noopener">VU Research Profile</a>
-        </div>
-        <div class="mail">x.yuan@vu.nl</div>
-        <div class="jm"><strong>Placement Director</strong><br>Prof. Eric Bartelsman<br>e.j.bartelsman@vu.nl</div>
-        <div class="jm"><strong>Job Market Secretary</strong><br>Christina Mansson, Tinbergen Institute<br>c.mansson@tinbergen.nl</div>
-      </div>
-
       <div class="bio">
         <h2>Biography</h2>
         <p class="notice"><strong>I am on the 2026–2027 academic job market.</strong></p>
@@ -187,12 +189,10 @@ footer .in { padding-block: 22px; }
           </div>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- RESEARCH -->
   <section id="research" class="page" hidden>
-    <div class="in">
       <h2>Research</h2>
 
       <div class="group first">Job Market Paper</div>
@@ -246,12 +246,10 @@ footer .in { padding-block: 22px; }
         <li><span class="yr">2025</span><span>International Risk Management Conference, Bari</span></li>
         <li><span class="yr">2024</span><span>PhD Seminar, Vrije Universiteit Amsterdam</span></li>
       </ul>
-    </div>
   </section>
 
   <!-- TEACHING -->
   <section id="teaching" class="page" hidden>
-    <div class="in">
       <h2>Teaching</h2>
       <div class="inst first">Vrije Universiteit Amsterdam</div>
       <ul class="teach">
@@ -264,12 +262,10 @@ footer .in { padding-block: 22px; }
       <ul class="teach">
         <li><span>Financial Modeling and Valuation <span class="lvl">· Master</span></span><span class="yr">2022</span></li>
       </ul>
-    </div>
   </section>
 
   <!-- PERSONAL -->
   <section id="personal" class="page" hidden>
-    <div class="in">
       <h2>Interests</h2>
       <p class="intro">I am a member of the Chinese Painters Association and hold the highest-level certificate in gongbi (fine-brush) painting. In my spare time I play the pipa, combining modern and classical music, and I love ballet.</p>
       <div class="hobbies">
@@ -298,8 +294,9 @@ footer .in { padding-block: 22px; }
         <figure><a href="img/painting-07.jpg" target="_blank" rel="noopener"><img src="img/painting-07.jpg" alt="Painting by Xin Yuan" loading="lazy"></a></figure>
         <figure><a href="img/painting-08.jpg" target="_blank" rel="noopener"><img src="img/painting-08.jpg" alt="Painting by Xin Yuan" loading="lazy"></a></figure>
       </div>
-    </div>
   </section>
+  </div>
+  </div>
 </main>
 
 <footer class="gut"><div class="in">© 2026 Xin (Sofia) Yuan</div></footer>
