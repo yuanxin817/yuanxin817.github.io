@@ -8,108 +8,122 @@
 <meta name="description" content="Xin (Sofia) Yuan, PhD candidate in Finance at Vrije Universiteit Amsterdam and the Tinbergen Institute. On the 2026–2027 academic job market.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <style>
-/* Layout: single scrolling page, sticky top nav with anchors; About = profile column + bio column; Research and Teaching as stacked sections. */
+/* Layout: light top bar with tab navigation; a sticky profile column on the left stays on every tab; the right column swaps between About, Research, Teaching and Personal. Palette taken from ink-and-colour painting: ink black, celadon green, a small cinnabar seal red. */
 :root {
-  --bg: #ffffff;
-  --alt: #f6f8fa;
-  --ink: #26292e;
-  --muted: #646b75;
-  --line: #e3e6ea;
-  --accent: #1a5e4a;
-  --accent-soft: #e4f0eb;
-  --f-head: "Montserrat", "Helvetica Neue", Arial, sans-serif;
-  --f-body: "Lato", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bg: #f7f8f6;
+  --surface: #ffffff;
+  --ink: #1e2422;
+  --muted: #5d6763;
+  --line: #dfe4e1;
+  --accent: #2c6654;
+  --accent-soft: #e6efeb;
+  --seal: #b23a2e;
+  --f-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --f-body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #15191b; --alt: #1b2023; --ink: #e4e8ea; --muted: #9ba5ab; --line: #2c3337; --accent: #7fc9ae; --accent-soft: #1d2f29; color-scheme: dark;
+    --bg: #131716; --surface: #1a1f1e; --ink: #e5e9e7; --muted: #9ba6a2; --line: #2b3331;
+    --accent: #84c2ad; --accent-soft: #1d2c27; --seal: #e07b6e; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #15191b; --alt: #1b2023; --ink: #e4e8ea; --muted: #9ba5ab; --line: #2c3337; --accent: #7fc9ae; --accent-soft: #1d2f29; color-scheme: dark;
+  --bg: #131716; --surface: #1a1f1e; --ink: #e5e9e7; --muted: #9ba6a2; --line: #2b3331;
+  --accent: #84c2ad; --accent-soft: #1d2c27; --seal: #e07b6e; color-scheme: dark;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.7; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.65; }
 .gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.in { max-width: 1000px; margin: 0 auto; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; text-underline-offset: 3px; }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-/* Nav */
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
-header .in { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-block: 14px; }
-.site { font-family: var(--f-head); font-weight: 700; font-size: 18px; color: var(--ink); }
-nav { display: flex; gap: 22px; font-family: var(--f-head); font-weight: 600; font-size: 15px; }
-nav a { color: var(--ink); }
-nav a:hover { color: var(--accent); text-decoration: none; }
-
-section { scroll-margin-top: 70px; }
-section.alt { background: var(--alt); }
-section .in { padding-block: 72px; }
-@media (max-width: 600px) { section .in { padding-block: 48px; } }
-h2 { font-family: var(--f-head); font-weight: 700; font-size: 30px; margin: 0 0 28px; }
-h3 { font-family: var(--f-head); font-weight: 600; font-size: 19px; margin: 0; line-height: 1.4; text-wrap: balance; }
+.in { max-width: 1120px; margin: 0 auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
 p { margin: 0; }
 
-/* About */
-.about { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 56px; }
-@media (max-width: 780px) { .about { grid-template-columns: 1fr; gap: 36px; } }
-.profile { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.avatar {
-  width: 220px; height: auto; max-width: 100%; aspect-ratio: 1; border-radius: 50%; background: var(--accent-soft);
-  object-fit: cover; object-position: 50% 22%; display: block; margin-bottom: 16px;
-}
-.profile .name { font-family: var(--f-head); font-weight: 700; font-size: 27px; line-height: 1.25; }
-.profile .title { color: var(--muted); }
-.profile .aff { line-height: 1.45; }
-.social { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-top: 12px; font-size: 15px; font-weight: 700; }
-.mail { margin-top: 8px; font-size: 15px; user-select: all; }
-.jm { margin-top: 14px; font-size: 14px; color: var(--muted); line-height: 1.5; }
-.jm strong { color: var(--ink); }
-.bio { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-.bio h2 { margin-bottom: 4px; }
-.notice { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 12px 16px; font-size: 16px; }
-.cols { display: grid; grid-template-columns: 1fr 1.5fr; gap: 32px; margin-top: 10px; }
-@media (max-width: 560px) { .cols { grid-template-columns: 1fr; gap: 24px; } }
-.cols h4 { font-family: var(--f-head); font-weight: 600; font-size: 18px; margin: 0 0 10px; }
-.cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.interests li::before { content: "›"; color: var(--accent); font-weight: 700; margin-right: 8px; }
-.edu li { display: flex; flex-direction: column; line-height: 1.4; padding-left: 18px; position: relative; }
-.edu li::before { content: ""; position: absolute; left: 0; top: 7px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.edu small { color: var(--muted); font-size: 15px; }
+/* Top bar */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+header .in { display: flex; align-items: center; justify-content: space-between; gap: 8px 20px; flex-wrap: wrap; padding-block: 12px; }
+.site { font-family: var(--f-display); font-weight: 600; font-size: 24px; color: var(--ink); text-decoration: none; line-height: 1.2; }
+nav { display: flex; flex-wrap: wrap; gap: 2px 22px; }
+nav a { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding-block: 6px; border-bottom: 2px solid transparent; }
+nav a:hover { color: var(--ink); }
+nav a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
 
-/* Research */
-.group { font-family: var(--f-head); font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 44px 0 14px; }
-.group.first { margin-top: 0; }
-.pubs { display: flex; flex-direction: column; gap: 16px; }
-.pub { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 22px 24px; display: flex; flex-direction: column; gap: 8px; }
-.pub.jmp { border-color: var(--accent); }
-.authors { color: var(--muted); font-size: 15px; }
-.pub h3 a { color: var(--ink); }
-.pub h3 a:hover { color: var(--accent); }
-.cite { font-size: 15px; }
-.plinks { font-size: 14px; font-weight: 700; display: flex; flex-wrap: wrap; gap: 4px 8px; }
-.plinks .doi { font-weight: 400; color: var(--muted); }
-.badge { align-self: flex-start; font-family: var(--f-head); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 2px 8px; border-radius: 3px; }
-details summary { cursor: pointer; color: var(--accent); font-size: 15px; font-weight: 700; }
-details p { margin-top: 8px; font-size: 16px; }
-.talks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 16px; }
-.talks li { display: flex; gap: 14px; }
-.talks .yr { color: var(--muted); font-variant-numeric: tabular-nums; flex: none; width: 40px; }
+/* Two columns */
+.layout { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 64px; padding-block: 48px 80px; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 36px; padding-block: 32px 56px; } }
 
-/* Teaching */
-.inst { font-family: var(--f-head); font-weight: 600; font-size: 17px; margin: 28px 0 4px; }
-.inst.first { margin-top: 0; }
-.teach { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.teach li { display: flex; justify-content: space-between; gap: 6px 16px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--line); }
-.teach .lvl { color: var(--muted); }
-.teach .yr { color: var(--muted); font-variant-numeric: tabular-nums; }
+/* Profile column */
+.profile { position: sticky; top: 96px; align-self: start; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+@media (max-width: 860px) { .profile { position: static; } }
+.portrait { width: 100%; max-width: 250px; aspect-ratio: 1; object-fit: cover; object-position: 50% 18%; border-radius: 12px; background: var(--accent-soft); box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(30,36,34,.10); margin-bottom: 14px; }
+@media (max-width: 860px) { .portrait { max-width: 180px; } }
+.profile .name { font-family: var(--f-display); font-weight: 600; font-size: 32px; line-height: 1.15; }
+.profile .roles { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); line-height: 1.75; margin-top: 4px; }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+.chips a { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; }
+.chips a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Content column */
+main { min-width: 0; }
+.page { display: flex; flex-direction: column; gap: 22px; max-width: 72ch; }
+.page[hidden] { display: none; }
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.eyebrow.seal { color: var(--seal); }
+h2.eyebrow { padding-bottom: 8px; border-bottom: 1px solid var(--line); margin-top: 18px; }
+h2.eyebrow.first { margin-top: 0; }
+.lede { font-size: 19px; }
+
+.facts { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 10px 20px; margin: 4px 0 0; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 16px; }
+@media (max-width: 560px) { .facts { grid-template-columns: 1fr; gap: 2px; } .facts dd { margin-bottom: 10px; } }
+.facts dt { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+.facts dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+
+.jmp-box { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 6px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; }
+
+/* Paper entries */
+.paper { display: flex; flex-direction: column; gap: 6px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.paper:last-child { border-bottom: 0; padding-bottom: 0; }
+.ptitle { font-family: var(--f-display); font-weight: 600; font-size: 25px; line-height: 1.25; margin: 0; color: var(--ink); text-wrap: balance; }
+.ptitle a { color: var(--accent); text-decoration: none; }
+.ptitle a:hover { text-decoration: underline; }
+.tag { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--seal); }
+.meta { color: var(--muted); font-size: 16px; }
+.cite { font-size: 16px; }
+.plinks { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; font-size: 15px; }
+.plinks > * + *::before { content: "|"; color: var(--line); margin: 0 12px; }
+.plinks .doi { color: var(--muted); }
+details summary { cursor: pointer; color: var(--accent); font-weight: 600; font-size: 15px; list-style: none; display: inline; }
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: " ▾"; font-size: 12px; }
+details[open] summary::after { content: " ▴"; }
+details .abs { margin-top: 10px; font-size: 16px; padding-left: 14px; border-left: 2px solid var(--line); }
+.papers { display: flex; flex-direction: column; gap: 22px; }
+
+.talks, .teach { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.talks li, .teach li { display: flex; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+.talks li:last-child, .teach li:last-child { border-bottom: 0; }
+.yr { color: var(--muted); font-variant-numeric: tabular-nums; }
+.lvl { color: var(--muted); }
+.inst { font-family: var(--f-display); font-weight: 600; font-size: 22px; margin: 6px 0 -6px; }
+
+/* Personal */
+.hobbies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.hobbies figure, .gallery figure { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.hobbies img { width: 100%; max-width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 8px; background: var(--accent-soft); display: block; }
+.hobbies figcaption { font-size: 15px; font-weight: 600; text-align: center; }
+.hobbies figcaption span { display: block; font-weight: 400; color: var(--muted); font-size: 14px; }
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 640px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .hobbies { gap: 10px; } }
+.gallery a { display: block; border-radius: 6px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
+.gallery img { width: 100%; max-width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; transition: transform .3s ease; }
+.gallery a:hover img { transform: scale(1.03); }
+@media (prefers-reduced-motion: reduce) { .gallery img { transition: none; } .gallery a:hover img { transform: none; } }
+.gallery figcaption { font-size: 14px; line-height: 1.35; }
+.gallery figcaption span { display: block; color: var(--muted); }
 
 footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 footer .in { padding-block: 22px; }
@@ -119,134 +133,180 @@ footer .in { padding-block: 22px; }
 
 <header class="gut">
   <div class="in">
-    <a class="site" href="#home">Xin (Sofia) Yuan</a>
-    <nav aria-label="Site"><a href="#home">Home</a><a href="#research">Research</a><a href="#teaching">Teaching</a></nav>
+    <a class="site" href="#about">Xin (Sofia) Yuan</a>
+    <nav aria-label="Site">
+      <a href="#about" data-page="about">About</a>
+      <a href="#research" data-page="research">Research</a>
+      <a href="#teaching" data-page="teaching">Teaching</a>
+      <a href="#personal" data-page="personal">Personal</a>
+    </nav>
   </div>
 </header>
 
-<section id="home" class="gut">
-  <div class="in about">
-    <div class="profile">
-      <img class="avatar" src="photo.jpg" alt="Portrait of Xin (Sofia) Yuan" width="220" height="220">
+<div class="gut">
+  <div class="in layout">
+    <aside class="profile">
+      <img class="portrait" src="photo.jpg" alt="Portrait of Xin (Sofia) Yuan" width="250" height="250">
       <div class="name">Xin (Sofia) Yuan</div>
-      <div class="title">PhD Candidate in Finance</div>
-      <div class="aff"><a href="https://vu.nl/en" target="_blank" rel="noopener">Vrije Universiteit Amsterdam</a><br><a href="https://tinbergen.nl" target="_blank" rel="noopener">Tinbergen Institute</a></div>
-      <div class="social">
+      <div class="roles">PhD Candidate in Finance<br>Vrije Universiteit Amsterdam<br>Tinbergen Institute</div>
+      <div class="chips">
         <a href="Xin_Yuan_CV.pdf" target="_blank" rel="noopener">CV</a>
-        <a href="https://research.vu.nl/en/persons/xin-yuan" target="_blank" rel="noopener">VU Research Profile</a>
+        <a href="mailto:x.yuan@vu.nl">Email</a>
+        <a href="https://research.vu.nl/en/persons/xin-yuan" target="_blank" rel="noopener">VU Profile</a>
       </div>
-      <div class="mail">x.yuan@vu.nl</div>
-      <div class="jm"><strong>Placement Director</strong><br>Prof. Eric Bartelsman<br>e.j.bartelsman@vu.nl</div>
-      <div class="jm"><strong>Job Market Secretary</strong><br>Christina Mansson, Tinbergen Institute<br>c.mansson@tinbergen.nl</div>
-    </div>
+    </aside>
 
-    <div class="bio">
-      <h2>Biography</h2>
-      <p class="notice"><strong>I am on the 2026–2027 academic job market.</strong></p>
-      <p>I am a PhD candidate in Finance at Vrije Universiteit Amsterdam and the Tinbergen Institute, supervised by Iman van Lelyveld and Tanja Artiga Gonzalez. I expect to complete my PhD in August 2027.</p>
-      <p>My research interests are in empirical corporate finance, particularly innovation and sustainable finance. I study how firms acquire and finance green technologies. My job market paper examines how delays in patent examination affect firms' decisions to purchase green patents. I also work on shareholder engagement, banking supervision, and banks' responses to monetary policy.</p>
-      <p>During my PhD, I have been a visiting student at Stockholm University, hosted by Gustav Martinsson, and a research visitor at the Dutch Central Bank (De Nederlandsche Bank). I hold an M.Sc. in Financial Econometrics from Johns Hopkins University.</p>
-      <div class="cols">
-        <div>
-          <h4>Interests</h4>
-          <ul class="interests">
-            <li>Empirical Corporate Finance</li>
-            <li>Innovation</li>
-            <li>Sustainable Finance</li>
-            <li>Corporate Governance</li>
-            <li>Banking</li>
-            <li>Machine Learning</li>
-          </ul>
+    <main>
+      <!-- ABOUT -->
+      <section class="page" id="about" data-section="about">
+        <p class="eyebrow seal">On the 2026–27 academic job market</p>
+        <p class="lede">I am a PhD candidate in Finance at Vrije Universiteit Amsterdam and the Tinbergen Institute, supervised by Iman van Lelyveld and Tanja Artiga Gonzalez. I expect to complete my PhD in August 2027.</p>
+        <p>My research interests are in empirical corporate finance, particularly innovation and sustainable finance. I study how firms acquire and finance green technologies. My job market paper examines how delays in patent examination affect firms' decisions to purchase green patents. I also work on shareholder engagement, banking supervision, and banks' responses to monetary policy.</p>
+        <p>During my PhD, I have been a visiting student at Stockholm University, hosted by Gustav Martinsson, and a research visitor at the Dutch Central Bank (De Nederlandsche Bank). I hold an M.Sc. in Financial Econometrics from Johns Hopkins University.</p>
+        <p>Outside research I paint in the Chinese bird-and-flower tradition, play the pipa and dance ballet. Some of my paintings are on the <a href="#personal" data-page="personal">Personal</a> page.</p>
+
+        <dl class="facts">
+          <dt>Research fields</dt><dd>Empirical corporate finance, innovation, sustainable finance, corporate governance, banking, machine learning</dd>
+          <dt>PhD expected</dt><dd>August 2027</dd>
+          <dt>Placement director</dt><dd>Prof. Eric Bartelsman (e.j.bartelsman@vu.nl)</dd>
+          <dt>Placement assistant</dt><dd>Christina Mansson, Tinbergen Institute (c.mansson@tinbergen.nl)</dd>
+          <dt>Email</dt><dd>x.yuan@vu.nl</dd>
+        </dl>
+
+        <h2 class="eyebrow">Job market paper</h2>
+        <div class="jmp-box">
+          <h3 class="ptitle">Knowledge Without Control: Examination Delay and Green-Patent Acquisitions</h3>
+          <p>When examination of their own green patent applications is delayed, firms whose product-market rivals file in the same technology class become much more likely to buy green patents.</p>
+          <div class="plinks"><a href="#research" data-page="research">Abstract and details</a></div>
         </div>
-        <div>
-          <h4>Education</h4>
-          <ul class="edu">
-            <li>PhD in Finance, expected 2027<small>Vrije Universiteit Amsterdam &amp; Tinbergen Institute</small></li>
-            <li>Visiting PhD Student, 2026<small>Stockholm University</small></li>
-            <li>M.Sc. in Financial Econometrics, 2020<small>Johns Hopkins University</small></li>
-            <li>B.A. in Finance and Russian Literature, 2019<small>University of International Business and Economics</small></li>
-          </ul>
+      </section>
+
+      <!-- RESEARCH -->
+      <section class="page" id="research" data-section="research" hidden>
+        <h2 class="eyebrow first">Job market paper</h2>
+        <div class="paper">
+          <h3 class="ptitle">Knowledge Without Control: Examination Delay and Green-Patent Acquisitions</h3>
+          <span class="tag">Job market paper</span>
+          <details open><summary>Abstract</summary>
+            <p class="abs">I study how delays in patent examination affect firms' purchases of green patents. I instrument the share of a firm's green applications still awaiting a first substantive office action eighteen months after filing with examiners' delay tendencies on other applicants' cases. Among firms facing product-market rivals filing in the same technology class, a one-standard-deviation increase in delay raises the probability of an acquisition in the following twelve months by 11.7 percentage points, against a base rate of 16.3%. The response is significantly stronger than among firms without such rivals. Evidence on the legal status and technological proximity of acquired patents is consistent with a legal-protection motive, although it does not rule out complementary knowledge acquisition. The findings show how patent examination and competitive exposure shape firms' demand for external patent rights.</p>
+          </details>
         </div>
-      </div>
-    </div>
+
+        <h2 class="eyebrow">Publications</h2>
+        <div class="paper">
+          <h3 class="ptitle"><a href="https://doi.org/10.1016/j.frl.2024.106415" target="_blank" rel="noopener">Green Gains: The Impact of REITs' Environmental Performance on Sustainability-Linked Loan Interest Rates</a></h3>
+          <div class="meta">with L. M. Capera Romero, T. Artiga Gonzalez and E. Karmaziene</div>
+          <div class="cite"><em>Finance Research Letters</em>, Vol. 71, January 2025, Article 106415</div>
+          <div class="plinks"><a href="https://doi.org/10.1016/j.frl.2024.106415" target="_blank" rel="noopener">Journal version</a><span class="doi">DOI: 10.1016/j.frl.2024.106415</span></div>
+        </div>
+
+        <h2 class="eyebrow">Working papers</h2>
+        <div class="papers">
+          <div class="paper">
+            <h3 class="ptitle">Cross-Lender Signals and the Timing of Credit Loss Recognition</h3>
+            <div class="meta">with Iman van Lelyveld</div>
+          </div>
+          <div class="paper">
+            <h3 class="ptitle">Central Bank Reserves and Bank Stock Returns around ECB Decisions</h3>
+            <div class="meta">with Iman van Lelyveld</div>
+          </div>
+          <div class="paper">
+            <h3 class="ptitle">Grouping the State: Reporting Boundaries and Exposure Concentration</h3>
+            <div class="meta">with Iman van Lelyveld</div>
+          </div>
+          <div class="paper">
+            <h3 class="ptitle">Private Engagement, Public Votes: Evidence from Shareholder Engagement Disclosures</h3>
+            <div class="meta">with Tanja Artiga Gonzalez</div>
+          </div>
+          <div class="paper">
+            <h3 class="ptitle">Green Patents as Collateral</h3>
+            <div class="meta">Single-authored</div>
+          </div>
+        </div>
+
+        <h2 class="eyebrow">Presentations</h2>
+        <ul class="talks">
+          <li><span>Annual Meeting of the Swiss Society for Financial Market Research (SGF), Zurich</span><span class="yr">2026</span></li>
+          <li><span>International Risk Management Conference, Bari</span><span class="yr">2025</span></li>
+          <li><span>PhD Seminar, Vrije Universiteit Amsterdam</span><span class="yr">2024</span></li>
+        </ul>
+      </section>
+
+      <!-- TEACHING -->
+      <section class="page" id="teaching" data-section="teaching" hidden>
+        <h2 class="eyebrow first">Teaching</h2>
+        <p class="inst">Vrije Universiteit Amsterdam</p>
+        <ul class="teach">
+          <li><span>Finance <span class="lvl">· Undergraduate</span></span><span class="yr">2022–2026</span></li>
+          <li><span>Bachelor Thesis Supervision <span class="lvl">· 55 theses</span></span><span class="yr">2022–2026</span></li>
+          <li><span>Stochastic Processes: the Fundamentals <span class="lvl">· Master</span></span><span class="yr">2025, 2026</span></li>
+          <li><span>Corporate Finance: Theory and Empirics <span class="lvl">· Master</span></span><span class="yr">2024</span></li>
+        </ul>
+        <p class="inst">Johns Hopkins University</p>
+        <ul class="teach">
+          <li><span>Financial Modeling and Valuation <span class="lvl">· Master</span></span><span class="yr">2022</span></li>
+        </ul>
+      </section>
+
+      <!-- PERSONAL -->
+      <section class="page" id="personal" data-section="personal" hidden>
+        <h2 class="eyebrow first">Interests</h2>
+        <p>Outside research I paint in the Chinese bird-and-flower tradition, play the pipa and dance ballet.</p>
+        <div class="hobbies">
+          <figure>
+            <img src="img/hobby-painting.jpg" alt="Xin painting bamboo with a brush" loading="lazy">
+            <figcaption>Chinese painting<span>国画</span></figcaption>
+          </figure>
+          <figure>
+            <img src="img/hobby-pipa.jpg" alt="Xin playing the pipa" loading="lazy" style="object-position: 40% 50%">
+            <figcaption>Pipa<span>琵琶</span></figcaption>
+          </figure>
+          <figure>
+            <img src="img/hobby-ballet.jpg" alt="Xin in a ballet pose" loading="lazy" style="object-position: 50% 30%">
+            <figcaption>Ballet<span>芭蕾</span></figcaption>
+          </figure>
+        </div>
+
+        <h2 class="eyebrow">Selected paintings</h2>
+        <div class="gallery">
+          <figure><a href="img/painting-01.jpg" target="_blank" rel="noopener"><img src="img/painting-01.jpg" alt="Painting of peonies and blue magpies" loading="lazy"></a><figcaption>Peonies and Blue Magpies <span>牡丹蓝鹊</span></figcaption></figure>
+          <figure><a href="img/painting-02.jpg" target="_blank" rel="noopener"><img src="img/painting-02.jpg" alt="Painting of cranes under a pine" loading="lazy"></a><figcaption>Pine and Cranes <span>松鹤</span></figcaption></figure>
+          <figure><a href="img/painting-03.jpg" target="_blank" rel="noopener"><img src="img/painting-03.jpg" alt="Painting of red blossoms and a small bird" loading="lazy"></a><figcaption>Red Blossoms and Bird <span>红花小鸟</span></figcaption></figure>
+          <figure><a href="img/painting-04.jpg" target="_blank" rel="noopener"><img src="img/painting-04.jpg" alt="Painting of two cats with bamboo and rock" loading="lazy"></a><figcaption>Two Cats, Bamboo and Rock <span>竹石双猫</span></figcaption></figure>
+          <figure><a href="img/painting-05.jpg" target="_blank" rel="noopener"><img src="img/painting-05.jpg" alt="Painting of lotus flowers" loading="lazy"></a><figcaption>Lotus <span>荷花</span></figcaption></figure>
+          <figure><a href="img/painting-06.jpg" target="_blank" rel="noopener"><img src="img/painting-06.jpg" alt="Painting of a white rooster" loading="lazy"></a><figcaption>White Rooster <span>白公鸡</span></figcaption></figure>
+          <figure><a href="img/painting-07.jpg" target="_blank" rel="noopener"><img src="img/painting-07.jpg" alt="Painting of peonies and a paradise flycatcher" loading="lazy"></a><figcaption>Peonies and Paradise Flycatcher <span>牡丹绶带</span></figcaption></figure>
+          <figure><a href="img/painting-08.jpg" target="_blank" rel="noopener"><img src="img/painting-08.jpg" alt="Painting of two cats by a lotus pond" loading="lazy"></a><figcaption>Two Cats by the Lotus Pond <span>荷塘双猫</span></figcaption></figure>
+        </div>
+      </section>
+    </main>
   </div>
-</section>
+</div>
 
-<section id="research" class="gut alt">
-  <div class="in">
-    <h2>Research</h2>
+<footer class="gut"><div class="in">© 2026 Xin (Sofia) Yuan</div></footer>
 
-    <div class="group first">Job Market Paper</div>
-    <div class="pubs">
-      <article class="pub jmp">
-        <span class="badge">Job Market Paper</span>
-        <h3>Knowledge Without Control: Examination Delay and Green-Patent Acquisitions</h3>
-        <details open><summary>Abstract</summary>
-          <p>I study how delays in patent examination affect firms' purchases of green patents. I instrument the share of a firm's green applications still awaiting a first substantive office action eighteen months after filing with examiners' delay tendencies on other applicants' cases. Among firms facing product-market rivals filing in the same technology class, a one-standard-deviation increase in delay raises the probability of an acquisition in the following twelve months by 11.7 percentage points, against a base rate of 16.3%. The response is significantly stronger than among firms without such rivals. Evidence on the legal status and technological proximity of acquired patents is consistent with a legal-protection motive, although it does not rule out complementary knowledge acquisition. The findings show how patent examination and competitive exposure shape firms' demand for external patent rights.</p>
-        </details>
-      </article>
-    </div>
-
-    <div class="group">Publications</div>
-    <div class="pubs">
-      <article class="pub">
-        <h3><a href="https://doi.org/10.1016/j.frl.2024.106415" target="_blank" rel="noopener">Green Gains: The Impact of REITs' Environmental Performance on Sustainability-Linked Loan Interest Rates</a></h3>
-        <div class="authors">with L. M. Capera Romero, T. Artiga Gonzalez and E. Karmaziene</div>
-        <div class="cite"><em>Finance Research Letters</em>, Vol. 71, January 2025, Article 106415</div>
-        <div class="plinks"><a href="https://doi.org/10.1016/j.frl.2024.106415" target="_blank" rel="noopener">Journal version</a> · <span class="doi">DOI: 10.1016/j.frl.2024.106415</span></div>
-      </article>
-    </div>
-
-    <div class="group">Working Papers</div>
-    <div class="pubs">
-      <article class="pub">
-        <h3>Cross-Lender Signals and the Timing of Credit Loss Recognition</h3>
-        <div class="authors">with Iman van Lelyveld</div>
-      </article>
-      <article class="pub">
-        <h3>Central Bank Reserves and Bank Stock Returns around ECB Decisions</h3>
-        <div class="authors">with Iman van Lelyveld</div>
-      </article>
-      <article class="pub">
-        <h3>Grouping the State: Reporting Boundaries and Exposure Concentration</h3>
-        <div class="authors">with Iman van Lelyveld</div>
-      </article>
-      <article class="pub">
-        <h3>Private Engagement, Public Votes: Evidence from Shareholder Engagement Disclosures</h3>
-        <div class="authors">with Tanja Artiga Gonzalez</div>
-      </article>
-      <article class="pub">
-        <h3>Green Patents as Collateral</h3>
-        <div class="authors">Single-authored</div>
-      </article>
-    </div>
-
-    <div class="group">Presentations</div>
-    <ul class="talks">
-      <li><span class="yr">2026</span><span>Annual Meeting of the Swiss Society for Financial Market Research (SGF), Zurich</span></li>
-      <li><span class="yr">2025</span><span>International Risk Management Conference, Bari</span></li>
-      <li><span class="yr">2024</span><span>PhD Seminar, Vrije Universiteit Amsterdam</span></li>
-    </ul>
-  </div>
-</section>
-
-<section id="teaching" class="gut">
-  <div class="in">
-    <h2>Teaching</h2>
-    <div class="inst first">Vrije Universiteit Amsterdam</div>
-    <ul class="teach">
-      <li><span>Finance <span class="lvl">· Undergraduate</span></span><span class="yr">2022–2026</span></li>
-      <li><span>Bachelor Thesis Supervision <span class="lvl">· 55 theses</span></span><span class="yr">2022–2026</span></li>
-      <li><span>Stochastic Processes: the Fundamentals <span class="lvl">· Master</span></span><span class="yr">2025, 2026</span></li>
-      <li><span>Corporate Finance: Theory and Empirics <span class="lvl">· Master</span></span><span class="yr">2024</span></li>
-    </ul>
-    <div class="inst">Johns Hopkins University</div>
-    <ul class="teach">
-      <li><span>Financial Modeling and Valuation <span class="lvl">· Master</span></span><span class="yr">2022</span></li>
-    </ul>
-  </div>
-</section>
-
-<footer class="gut"><div class="in">© 2026 Xin (Sofia) Yuan · Last updated October 2026</div></footer>
+<script>
+(function () {
+  var pages = ["about", "research", "teaching", "personal"];
+  function show(name, scroll) {
+    if (pages.indexOf(name) < 0) name = "about";
+    pages.forEach(function (p) { document.getElementById(p).hidden = (p !== name); });
+    document.querySelectorAll("nav a").forEach(function (a) {
+      if (a.dataset.page === name) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    if (scroll) window.scrollTo(0, 0);
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a[data-page], a.site");
+    if (!a) return;
+    e.preventDefault();
+    var name = a.dataset.page || "about";
+    show(name, true);
+    try { history.replaceState(null, "", "#" + name); } catch (err) {}
+  });
+  window.addEventListener("hashchange", function () { show(location.hash.slice(1), true); });
+  show(location.hash.slice(1), false);
+})();
+</script>
 </body>
 </html>
